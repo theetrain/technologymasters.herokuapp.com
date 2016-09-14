@@ -52,9 +52,15 @@ function style() {
 
   css.add('.splash', {
     'width': iframe ? '25rem' : '30rem',
-    'margin': iframe ? '0' : '20rem auto',
+    'margin': '0',
     'text-align': 'center',
     'font-family': '"Helvetica Neue", Helvetica, Arial'
+  });
+
+  css.add('body', {
+    'display': 'flex',
+    'align-items': 'center',
+    'justify-content': 'center'
   });
 
   if (iframe) {
