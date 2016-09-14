@@ -1,8 +1,6 @@
-
 # slackin
 
-A little server that enables public access
-to a Slack server. Like Freenode, but on Slack.
+A little server that enables public access to a Slack server. Like Freenode, but on Slack.
 
 It provides
 
@@ -21,7 +19,7 @@ Read more about the [motivations and history](http://rauchg.com/slackin) behind 
 
 #### Heroku
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/rauchg/slackin/tree/0.8.2)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/rauchg/slackin/tree/master)
 
 #### Azure
 
@@ -33,9 +31,12 @@ Read more about the [motivations and history](http://rauchg.com/slackin) behind 
 
 #### Cloud Foundry
 
-[Follow these instructions.](https://github.com/pivotal-cf/slackin/wiki/Cloud-Foundry)
+##### IBM Bluemix
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/rauchg/slackin)
 
-#### Custom
+For other CloudFoundry providers, [follow these instructions.](https://github.com/pivotal-cf/slackin/wiki/Cloud-Foundry)
+
+#### NPM
 
 Install it and launch it on your server:
 
@@ -46,7 +47,7 @@ $ slackin "your-team-id" "your-slack-token"
 
 Your team id is what you use to access your login page on Slack (eg: https://**{this}**.slack.com).
 
-You can find your API token at [api.slack.com/web](https://api.slack.com/web) – note that the user you use to generate the token must be an admin. You need to create a dedicated `@slackin-inviter` user (or similar), mark that user an admin, and use a token from that dedicated admin user.
+You can find or generate your API test token at [api.slack.com/web](https://api.slack.com/web) – note that the user you use to generate the token must be an admin. You need to create a dedicated `@slackin-inviter` user (or similar), mark that user an admin, and use a test token from that dedicated admin user.  Note that test tokens have actual permissions so you do not need to create an OAuth 2 app. Also check out the Slack docs on [generating a test token](https://get.slack.help/hc/en-us/articles/215770388-Creating-and-regenerating-API-tokens).
 
 The available options are:
 
@@ -55,8 +56,8 @@ Usage: slackin [options] <team-id> <api-token>
 
 Options:
 
-  -h, --help                 output usage information
-  -V, --version              output the version number
+  -?, --help                 output usage information
+  -v, --version              output the version number
   -p, --port <port>          Port to listen on [$PORT or 3000]
   -h, --hostname <hostname>  Hostname to listen on [$HOSTNAME or 0.0.0.0]
   -c, --channels [<chan>]    One or more comma-separated channel names to allow single-channel guests [$SLACK_CHANNELS]
@@ -131,10 +132,21 @@ online users you have on the console.
 
 By default logging is enabled.
 
+The returned `http.Server` has an `app` property that is
+the `express` application that you can define or override
+routes on.
+
+### JSON
+
+All the metadata for your organization can be fetched
+via a JSON HTTP request to `/data`.
+
+If you wish to turn on CORS, pass `-x` or `--cors` to `slackin`.
+
 ## Developing
 
-Slackin's server side code is written in ES6. It uses babel to transpile the 
-ES6 code to a format node understands. After cloning Slackin, you should 
+Slackin's server side code is written in ES6. It uses babel to transpile the
+ES6 code to a format node understands. After cloning Slackin, you should
 install the prerequisite node libraries with npm:
 
 ```bash
@@ -142,7 +154,7 @@ $ npm install
 ```
 
 After the libraries install, the postinstall script will run `gulp` to invoke
-babel on the source. It is important to run `gulp` manually after updating any 
+babel on the source. It is important to run `gulp` manually after updating any
 files in lib/ to update the versions in node/.
 
 ## Credits
