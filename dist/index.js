@@ -60,19 +60,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // our code
 // es6 runtime requirements
 function slackin(_ref) {
-  var token = _ref.token;
-  var _ref$interval = _ref.interval;
-  var interval = _ref$interval === undefined ? 5000 : _ref$interval;
-  var org = _ref.org;
-  var css = _ref.css;
-  var coc = _ref.coc;
-  var _ref$cors = _ref.cors;
-  var useCors = _ref$cors === undefined ? false : _ref$cors;
-  var _ref$path = _ref.path;
-  var path = _ref$path === undefined ? '/' : _ref$path;
-  var channels = _ref.channels;
-  var _ref$silent = _ref.silent;
-  var silent = _ref$silent === undefined ? false : _ref$silent;
+  var token = _ref.token,
+      _ref$interval = _ref.interval,
+      interval = _ref$interval === undefined ? 5000 : _ref$interval,
+      org = _ref.org,
+      css = _ref.css,
+      coc = _ref.coc,
+      _ref$cors = _ref.cors,
+      useCors = _ref$cors === undefined ? false : _ref$cors,
+      _ref$path = _ref.path,
+      path = _ref$path === undefined ? '/' : _ref$path,
+      channels = _ref.channels,
+      _ref$silent = _ref.silent,
+      silent = _ref$silent === undefined ? false : _ref$silent;
 
   // must haves
   if (!token) throw new Error('Must provide a `token`.');
@@ -115,12 +115,12 @@ function slackin(_ref) {
 
   // splash page
   app.get('/', function (req, res) {
-    var _slack$org = slack.org;
-    var name = _slack$org.name;
-    var logo = _slack$org.logo;
-    var _slack$users = slack.users;
-    var active = _slack$users.active;
-    var total = _slack$users.total;
+    var _slack$org = slack.org,
+        name = _slack$org.name,
+        logo = _slack$org.logo;
+    var _slack$users = slack.users,
+        active = _slack$users.active,
+        total = _slack$users.total;
 
     if (!name) return res.send(404);
     var page = (0, _vd2.default)('html', (0, _vd2.default)('head', (0, _vd2.default)('title', 'Join ', name, ' on Slack!'), (0, _vd2.default)('meta name=viewport content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no"'), (0, _vd2.default)('link rel="shortcut icon" href=https://slack.global.ssl.fastly.net/272a/img/icons/favicon-32.png'), css && (0, _vd2.default)('link rel=stylesheet', { href: css })), (0, _splash2.default)({ coc: coc, path: path, css: css, name: name, org: org, logo: logo, channels: channels, active: active, total: total }));
@@ -129,12 +129,12 @@ function slackin(_ref) {
   });
 
   app.get('/data', function (req, res) {
-    var _slack$org2 = slack.org;
-    var name = _slack$org2.name;
-    var logo = _slack$org2.logo;
-    var _slack$users2 = slack.users;
-    var active = _slack$users2.active;
-    var total = _slack$users2.total;
+    var _slack$org2 = slack.org,
+        name = _slack$org2.name,
+        logo = _slack$org2.logo;
+    var _slack$users2 = slack.users,
+        active = _slack$users2.active,
+        total = _slack$users2.total;
 
     res.send({
       name: name,
@@ -194,9 +194,9 @@ function slackin(_ref) {
   // iframe
   app.get('/iframe', function (req, res) {
     var large = 'large' in req.query;
-    var _slack$users3 = slack.users;
-    var active = _slack$users3.active;
-    var total = _slack$users3.total;
+    var _slack$users3 = slack.users,
+        active = _slack$users3.active,
+        total = _slack$users3.total;
 
     res.type('html');
     res.send((0, _iframe2.default)({ path: path, active: active, total: total, large: large }).toHTML());
@@ -205,9 +205,9 @@ function slackin(_ref) {
   app.get('/iframe/dialog', function (req, res) {
     var large = 'large' in req.query;
     var name = slack.org.name;
-    var _slack$users4 = slack.users;
-    var active = _slack$users4.active;
-    var total = _slack$users4.total;
+    var _slack$users4 = slack.users,
+        active = _slack$users4.active,
+        total = _slack$users4.total;
 
     if (!name) return res.send(404);
     var dom = (0, _splash2.default)({ coc: coc, path: path, name: name, org: org, channels: channels, active: active, total: total, large: large, iframe: true });

@@ -24,9 +24,9 @@ var SlackData = function (_EventEmitter) {
   _inherits(SlackData, _EventEmitter);
 
   function SlackData(_ref) {
-    var token = _ref.token;
-    var interval = _ref.interval;
-    var host = _ref.org;
+    var token = _ref.token,
+        interval = _ref.interval,
+        host = _ref.org;
 
     _classCallCheck(this, SlackData);
 
