@@ -139,6 +139,7 @@ function slackin(_ref) {
     res.send({
       name: name,
       org: org,
+      nospam: nospam,
       coc: coc,
       logo: logo,
       channels: channels,
@@ -172,6 +173,10 @@ function slackin(_ref) {
 
     if (!(0, _emailRegex2.default)().test(email)) {
       return res.status(400).json({ msg: 'Invalid email' });
+    }
+
+    if ('1' != req.body.nospam) {
+      return res.status(400).json({ msg: 'You must check all boxes' });
     }
 
     if (coc && '1' != req.body.coc) {
